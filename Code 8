@@ -1,0 +1,19 @@
+import mysql.connector
+
+con=mysql.connector.connect(host='bsnoqcf9lfy5zpmfd3qr-mysql.services.clever-cloud.com',user='uw2adim3bd7ixt2f',password='tP79IWZLKoDG0ZJlAlky',database='bsnoqcf9lfy5zpmfd3qr')
+cur=con.cursor()
+
+bookcode= int(input("enter the bookcode here:"))
+cur.execute("select * from books where bookcode=%d" %bookcode)
+data=cur.fetchall()
+
+if data==[]:
+    print("Book not found")
+else:
+    print(data)
+    ask=input("Do you want to delete this book?")
+    if ask.lower()=='yes':
+        cur.execute("delete from books where bookcode=%d" %bookcode)
+        print("Book Deleted")
+        con.commit()
+con.close()

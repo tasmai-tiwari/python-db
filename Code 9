@@ -1,0 +1,17 @@
+import mysql.connector
+
+con=mysql.connector.connect(host='bsnoqcf9lfy5zpmfd3qr-mysql.services.clever-cloud.com',user='uw2adim3bd7ixt2f',password='tP79IWZLKoDG0ZJlAlky',database='bsnoqcf9lfy5zpmfd3qr')
+cur=con.cursor()
+
+authorname=input("enter the author's name here:")
+publication=int(input("enter the publication year here:"))
+
+cur.execute("select bookname from books where authorname='%s' and publication=%d" %(authorname.lower(), publication))
+data=cur.fetchall()
+
+if data==[]:
+    print("Book not found")
+else:
+    print(data)
+
+con.close()
